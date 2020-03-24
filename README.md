@@ -47,7 +47,7 @@ A CSV file named clients.csv should have been generated in the following path: .
 
 ## Authors
 
-* ** Amadoor Rosa Garrido *
+* Amador Rosa Garrido
 
 
 
