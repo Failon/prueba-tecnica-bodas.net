@@ -3,6 +3,7 @@
 namespace App\ClientExport\DataSources;
 
 use App\ClientExport\Entity\Client;
+use App\ClientExport\Exception\InvalidSourceFormatClientException;
 
 final class XMLClientDataSource implements  ClientDataSourceInterface
 {
@@ -31,12 +32,11 @@ final class XMLClientDataSource implements  ClientDataSourceInterface
         $xml = simplexml_load_file($this->projectDir . self::PUBLIC_PATH . 'data.xml');
 
         foreach ($xml->reading as $clientLine) {
-            $this->clients[] = new Client(
-                $clientLine->attributes()['name'],
-                $clientLine,
-                $clientLine->attributes()['phone'],
-                $clientLine->attributes()['company']
-            );
+            try {
+                $this->clients[] = Client::fromXml($clientLine);
+            } catch (InvalidSourceFormatClientException $e) {
+                continue;
+            }
         }
 
         return $this->clients;

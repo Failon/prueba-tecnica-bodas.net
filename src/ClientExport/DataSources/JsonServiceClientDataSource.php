@@ -4,6 +4,7 @@ namespace App\ClientExport\DataSources;
 
 use App\ClientExport\DataSources\Client\HttpClient;
 use App\ClientExport\Entity\Client;
+use App\ClientExport\Exception\InvalidSourceFormatClientException;
 
 
 final class JsonServiceClientDataSource implements ClientDataSourceInterface
@@ -35,12 +36,11 @@ final class JsonServiceClientDataSource implements ClientDataSourceInterface
         $clients = json_decode($response->getBody(), true);
 
         foreach ($clients as $client) {
-            $this->clients[] = new Client(
-              $client['name'],
-              $client['email'],
-              $client['phone'],
-              $client['company']['name']
-            );
+            try {
+                $this->clients[] = Client::fromJson($client);
+            } catch (InvalidSourceFormatClientException $e) {
+                continue;
+            }
         }
 
         return $this->clients;
