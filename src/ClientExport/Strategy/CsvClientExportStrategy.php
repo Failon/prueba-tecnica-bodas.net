@@ -4,7 +4,7 @@ namespace App\ClientExport\Strategy;
 
 use App\ClientExport\Entity\Client;
 
-class CsvClientExportStrategy implements ExportStrategyInterface
+final class CsvClientExportStrategy implements ExportStrategyInterface
 {
     const PUBLIC_PATH = '/public/';
 
@@ -31,7 +31,7 @@ class CsvClientExportStrategy implements ExportStrategyInterface
      */
     public function export(array $clients): void
     {
-        if (count($clients) > 0) {
+        if (!empty($clients)) {
             $fp = fopen(
                 $this->projectDir .
                 self::PUBLIC_PATH .

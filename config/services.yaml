@@ -5,6 +5,7 @@
 # https://symfony.com/doc/current/best_practices/configuration.html#application-related-configuration
 parameters:
     locale: 'en'
+    clients.url: 'https://jsonplaceholder.typicode.com'
 
 services:
     # default configuration for services in *this* file
@@ -24,8 +25,13 @@ services:
         resource: '../src/Controller'
         tags: ['controller.service_arguments']
 
+    App\ClientExport\DataSources\Client\HttpClient:
+        class: 'App\ClientExport\DataSources\Client\HttpClient'
+        arguments: ['%clients.url%']
+
     App\ClientExport\DataSources\JsonServiceClientDataSource:
         class: 'App\ClientExport\DataSources\JsonServiceClientDataSource'
+        arguments: ['@App\ClientExport\DataSources\Client\HttpClient']
 
     App\ClientExport\DataSources\XMLClientDataSource:
         class: 'App\ClientExport\DataSources\XMLClientDataSource'

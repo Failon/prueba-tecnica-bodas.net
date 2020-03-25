@@ -4,7 +4,7 @@ namespace App\ClientExport\DataSources;
 
 use App\ClientExport\Entity\Client;
 
-class XMLClientDataSource implements  ClientDataSourceInterface
+final class XMLClientDataSource implements  ClientDataSourceInterface
 {
     const PUBLIC_PATH = '/public/';
 

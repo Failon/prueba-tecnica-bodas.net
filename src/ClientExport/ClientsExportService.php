@@ -6,7 +6,7 @@ use App\ClientExport\DataSources\ClientDataSourceInterface;
 use App\ClientExport\Entity\Client;
 use App\ClientExport\Strategy\ExportStrategyInterface;
 
-class ClientsExportService
+final class ClientsExportService
 {
     /**
      * @var ClientDataSourceInterface[]

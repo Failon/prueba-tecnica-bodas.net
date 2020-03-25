@@ -2,24 +2,36 @@
 
 namespace App\ClientExport\DataSources;
 
-use GuzzleHttp\Client as GuzzleClient;
+use App\ClientExport\DataSources\Client\HttpClient;
 use App\ClientExport\Entity\Client;
 
 
-class JsonServiceClientDataSource implements ClientDataSourceInterface
+final class JsonServiceClientDataSource implements ClientDataSourceInterface
 {
 
-    const WEBSERVICE_URL = 'https://jsonplaceholder.typicode.com/users';
+    private const CLIENTS_URI = '/users';
+
     /**
      * @var Client[]
      */
     private $clients = [];
 
+    /**
+     * @var HttpClient
+     */
+    private $httpClient;
+
+    /**
+     * @param HttpClient $httpClient
+     */
+    public function __construct(HttpClient $httpClient)
+    {
+        $this->httpClient = $httpClient;
+    }
 
     public function extract(): array
     {
-        $client = new GuzzleClient();
-        $response = $client->request('GET', self::WEBSERVICE_URL);
+        $response = $this->httpClient->request('GET', self::CLIENTS_URI);
         $clients = json_decode($response->getBody(), true);
 
         foreach ($clients as $client) {
