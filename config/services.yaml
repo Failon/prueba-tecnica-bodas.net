@@ -47,7 +47,7 @@ services:
             - ['@App\ClientExport\DataSources\JsonServiceClientDataSource', '@App\ClientExport\DataSources\XMLClientDataSource']
             - '@App\ClientExport\Strategy\CsvClientExportStrategy'
 
-    App\ClientExport\Command:
-        class: 'App\ClientExport\Command'
+    App\ClientExport\Command\GenerateCSVCommand:
+        class: 'App\ClientExport\Command\GenerateCSVCommand'
         arguments:
             - '@App\ClientExport\ClientsExportService'
