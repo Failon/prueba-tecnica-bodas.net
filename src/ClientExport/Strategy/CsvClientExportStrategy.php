@@ -6,9 +6,8 @@ use App\ClientExport\Entity\Client;
 
 final class CsvClientExportStrategy implements ExportStrategyInterface
 {
-    const PUBLIC_PATH = '/public/';
-
-    const HEADERS = [
+    private const PUBLIC_PATH = '/public/';
+    private const HEADERS = [
         'name',
         'email',
         'phone',

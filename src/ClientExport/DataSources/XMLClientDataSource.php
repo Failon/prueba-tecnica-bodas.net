@@ -7,7 +7,7 @@ use App\ClientExport\Exception\InvalidSourceFormatClientException;
 
 final class XMLClientDataSource implements  ClientDataSourceInterface
 {
-    const PUBLIC_PATH = '/public/';
+    private const PUBLIC_PATH = '/public/';
 
     /**
      * @var Client[]

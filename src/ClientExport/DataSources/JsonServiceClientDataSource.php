@@ -9,7 +9,6 @@ use App\ClientExport\Exception\InvalidSourceFormatClientException;
 
 final class JsonServiceClientDataSource implements ClientDataSourceInterface
 {
-
     private const CLIENTS_URI = '/users';
 
     /**
