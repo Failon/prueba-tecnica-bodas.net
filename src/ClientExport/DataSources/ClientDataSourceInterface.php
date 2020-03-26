@@ -7,7 +7,7 @@ use App\ClientExport\Entity\Client;
 interface ClientDataSourceInterface
 {
     /**
-     * @return array|Client
+     * @return Client[]
      */
     public function extract(): array;
 }

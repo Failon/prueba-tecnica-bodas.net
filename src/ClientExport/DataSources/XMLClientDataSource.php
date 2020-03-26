@@ -24,9 +24,6 @@ final class XMLClientDataSource implements  ClientDataSourceInterface
         $this->projectDir = $projectDir;
     }
 
-    /**
-     * @return array
-     */
     public function extract(): array
     {
         $xml = simplexml_load_file($this->projectDir . self::PUBLIC_PATH . 'data.xml');
